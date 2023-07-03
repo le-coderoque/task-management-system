@@ -42,8 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
+    'drf_spectacular',
     'api',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -66,7 +69,12 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
-    )
+    ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+REST_AUTH = {
+    'REGISTER_SERIALIZER': 'api.serializers.CustomRegisterSerializer',
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
