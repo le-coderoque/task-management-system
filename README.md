@@ -65,7 +65,7 @@ API documentation is available at [http://localhost:8080/](http://localhost:8080
 
 ## Admin Interface
 
-# Superuser
+### Superuser
 
 By default, a superuser is created during the initialization process with the following credentials:
 
