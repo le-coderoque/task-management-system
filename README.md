@@ -61,7 +61,16 @@ To get started with this project, follow these steps:
 
 ## API Documentation
 
-API documentation is available at [http://localhost:8080/](http://localhost:8080/).
+This application uses Swagger UI for interactive API documentation and exploration. Once the application is running, the Swagger UI interface is accessible at [http://localhost:8080/](http://localhost:8080/).
+
+From the Swagger UI interface, you can:
+
+    View the entire API schema, including paths, operations, parameters, request bodies, and responses.
+    Send requests and receive responses from the API.
+    View clear error messages.
+    Easily interact with the API without needing to use a separate tool like curl or Postman.
+
+Note that in order to interact with endpoints that require authentication, you'll need to log in. The default superuser username and password are both admin.
 
 ## Admin Interface
 
