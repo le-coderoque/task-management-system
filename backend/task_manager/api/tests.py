@@ -29,8 +29,7 @@ class TaskTests(APITestCase):
 
     def test_update_task(self):
         data = {'title': 'Updated task',
-                'description': 'Updated description',
-                'user': self.user.id}
+                'description': 'Updated description'}
         response = self.client.put(reverse('tasks-detail',
                                            args=[self.task.id]), data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)

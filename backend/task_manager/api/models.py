@@ -11,9 +11,7 @@ class Task(models.Model):
 
     class Meta:
         ordering = ['-created']
-        indexes = [
-            models.Index(fields=['-created'])
-        ]
+        indexes = [models.Index(fields=['-created'])]
 
     def __str__(self):
         return self.title
