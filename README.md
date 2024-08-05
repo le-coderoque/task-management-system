@@ -1,14 +1,22 @@
-# Task Management System
+# Django Test Assignment Boilerplate
 
-This project is a simple task management system implemented with Django, Django Rest Framework, and MySQL. The system allows users to create, view, update, and delete tasks.
+A take on typical test assignments, this repository showcases a universal Django setup with sample features. Perfect for experimenting with Django's capabilities.
 
 ## Project Description
 
+The API for this system includes endpoints for user registration, login, logout. Credentials are provided at the end of the file.
+
+### Task Management System
+
 Each task includes a title and a description. Users are required to register and log in to access task management functionalities. All tasks are accessible to all users.
 
-The API for this system includes endpoints for user registration, login, logout, retrieving a list of all tasks, creating a new task, retrieving details of a task, updating a task, and deleting a task.
+### Advert Views Counter
+
+Track and manage the number of views for each advert. The counter automatically increments each time an advert is accessed via its detail view, allowing you to monitor engagement and popularity effectively.
 
 ## API Endpoints
+
+### auth
 
 1. User Registration
     - `/api/auth/registration/` (POST)
@@ -21,6 +29,8 @@ The API for this system includes endpoints for user registration, login, logout,
 3. User Logout
     - `/api/auth/logout/` (POST)
         - Log out a user.
+
+### task managment
 
 4. Tasks List
     - `/api/tasks/` (GET)
@@ -35,6 +45,17 @@ The API for this system includes endpoints for user registration, login, logout,
         - Update the task with the given ID. The request body should contain `title` and `description`.
     - `/api/tasks/{id}/` (DELETE)
         - Delete the task with the given ID.
+
+### advert views counter
+
+6. Advert List
+    - `/api/adverts/` (GET)
+        - Retrieve a list of all adverts. Includes all fields of each advert plus the city name and category name.
+
+7. Advert Detail
+    - `/api/advert/{advert_pk}/` (GET)
+        - Retrieve details of the advert with the given ID. Includes all fields of the advert. Accessing this endpoint increases the view count of the advert.
+
 
 ## Requirements
 
@@ -55,8 +76,8 @@ To get started with this project, follow these steps:
 2. Build and start the Docker containers:
 
     ```shell
-    docker-compose build
-    docker-compose up
+    docker compose build
+    docker compose up
     ```
 
 ## API Documentation

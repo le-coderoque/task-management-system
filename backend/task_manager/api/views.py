@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.db import IntegrityError
+from django.db.models import F
 from rest_framework import status, viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
@@ -8,8 +9,9 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Task
-from .serializers import TaskDetailSerializer, TaskListSerializer
+from .models import Advert, Task
+from .serializers import (AdvertSerializer, TaskDetailSerializer, 
+                          TaskListSerializer)
 
 
 class TaskViewSet(viewsets.ModelViewSet):
@@ -87,3 +89,16 @@ class LogoutView(APIView):
         else:
             return Response({'detail': 'Invalid token.'},
                             status=status.HTTP_400_BAD_REQUEST)
+
+
+class AdvertViewSet(viewsets.ModelViewSet):
+    queryset = Advert.objects.all()
+    serializer_class = AdvertSerializer
+    permission_classes = [AllowAny]
+
+    def retrieve(self, request, *args, **kwargs):
+        advert = self.get_object()
+        Advert.objects.filter(pk=advert.pk).update(views=F('views') + 1)
+        advert.refresh_from_db()
+        serializer = self.get_serializer(advert)
+        return Response(serializer.data)

@@ -231,8 +231,72 @@ paths:
       responses:
         '204':
           description: No response body
+  /api/adverts/:
+    get:
+      operationId: advert_list
+      tags:
+        - adverts
+      security:
+        - tokenAuth: []
+      responses:
+        '200':
+          description: "List of adverts"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Advert'
+  /api/adverts/{advert_pk}/:
+    get:
+      operationId: advert_detail
+      tags:
+        - adverts
+      parameters:
+        - name: advert_pk
+          in: path
+          required: true
+          description: "ID of the advert to retrieve"
+          schema:
+            type: integer
+      security:
+        - tokenAuth: []
+      responses:
+        '200':
+          description: "Detail of a single advert"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Advert'
+        '404':
+          description: "Advert not found"
 components:
   schemas:
+    Advert:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier for the advert
+        title:
+          type: string
+          description: The title of the advert
+        description:
+          type: string
+          description: A detailed description of the advert
+        created:
+          type: string
+          format: date-time
+          description: The creation date of the advert
+        city:
+          type: string
+          description: The city where the advert is located
+        category:
+          type: string
+          description: The category of the advert
+        views:
+          type: integer
+          description: The number of views of the advert
     PatchedTaskDetail:
       type: object
       properties:
